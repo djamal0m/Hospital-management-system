@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+      Hospital Management System 
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta name="theme-color" content="#ffffff">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="/assets/vendor/@fortawesome/fontawesome-free-5.10.2-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/deps/select2.css"/>
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/assets/css/register.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+
+    {% block headscripts %}
+    {% endblock %}
+  </head>
+
+  <body>
+    <div class="wrapper">
+        <div class="sidebar">
+        <h3 class="text-center text-white">Dashboard</h3>
+        <ul>
+            <li> <a href="/"> <i class="fas fa-home"></i> Home  </a> </li>
+            <li> <a href="/"> <i class="fas fa-calendar-check"></i> Appointments  </a> </li>
+            <li> <a href="/patients"> <i class="fab fa-accessible-icon"></i> Patients  </a> </li>
+            <li> <a href="/doctors"> <i class="fas fa-user-md"></i> Doctors </a> </li>
+            <li> <a href="/"> <i class="fas fa-user-nurse"></i>Nurses </a> </li>
+            <li> <a href="/"> <i class="fas fa-stethoscope"></i> Consultations </a> </li>
+            <li> <a href="/"> <i class="fas fa-procedures"></i>  Beds/Rooms  </a> </li>
+            <li> <a href="/"> <i class="fas fa-file-invoice-dollar"></i> Invoices </a> </a> </li>
+            <li> <a href="/"> <i class="fas fa-users"></i> Staff </a></li>
+            <li> <a href="/"> <i class="fas fa-cog"></i> Setting </a></li>
+        </ul>
+        </div>
+
+        <div class="main_content container-fluid">
+          <div class="header"> Welcome to Hospital Management System.</div>
+          {% block content %}
+      
+          {% endblock %}
+        </div>
+    </div>
+    
+    <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    {% block midscripts %}
+    {% endblock %}
+
+    {% block scripting %}
+    {% endblock %}
+  </body>
+</html>

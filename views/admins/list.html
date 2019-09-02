@@ -1,0 +1,102 @@
+{% set active = "admins" %}
+{% extends "layout.html" %}
+
+{% block topbar %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-8">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <div class="row align-items-center">
+          <div class="col">
+            <h2 class="mb-0">Les admininstateurs</h2>
+          </div>
+        </div>
+      </div>
+      <div class="px-2">
+        {% include "alert.html" %}
+      </div>
+      <div class="table-responsive">
+        {% if admins.length > 0 %}
+        
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for admin in admins %}
+            <tr>
+              <th scope="row">{{loop.index}}</th>
+              <td>
+                {{admin.firstname}} {{admin.lastname}}
+              </td>
+              <td>
+                {{admin.email}}
+              </td>
+              <td>
+                {{'Super Admin' if admin.role == 'superadmin' else 'Coodonateur'}}
+              </td>
+              <td class="text-right">
+                {% if user.role == 'superadmin' %}
+                <form class="dropdown-item" method="post" action="/admins/delete">
+                  <input type="hidden" name="id" value="{{admin._id}}">
+                  <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                  <button type="submit" class="btn btn-link text-danger pl-0">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </form>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <div class="text-center text-primary my-3">Aucun admin disponible</div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="">
+      <div class="card shadow border-0 bg-secondary">
+        <div class="card-header bg-white">
+          <h2 class="">Ajouter un admin</h2>
+        </div>
+        <div class="card-body">
+          <form class="form-signin" action="/admins" method="post">
+            <div class="form-group">
+              <label class="form-control-label">Email</label>
+              <input type="email" name="email" class="form-control form-control-alternative" required autofocus>
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Mot de passe</label>
+              <input type="password" name="password" class="form-control form-control-alternative" required>
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Role</label>
+              <select name="role" class="form-control form-control-alternative" required>
+                <option value="superadmin">Super Admin</option>
+                <option value="coordonateur">Coordonateur</option>
+              </select>
+            </div>
+            <div class="text-right form-group">
+              <input type="hidden" name="_csrf" value="{{csrfToken}}">
+              <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

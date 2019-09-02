@@ -1,0 +1,32 @@
+{% extends "auth.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mt--9 mx-auto mt-5">
+      <div class="card shadow border-0 my-5">
+        <div class="card-body">
+          <h1 class="card-title text-center">Connexion</h1>
+          <hr>
+          {% include "alert.html" %}
+          <form class="form-signin has-primary" action="/login" method="post">
+            <div class="form-group">
+              <label class="bmd-label-floating">Adresse e-mail</label>
+              <input type="email" id="inputEmail" name="email" class="form-control" required autofocus>
+            </div>
+            <div class="form-group">
+              <label class="bmd-label-floating">Mot de passe</label>
+              <input type="password" id="inputPassword" name="password" class="form-control" required>
+            </div>
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <div class="form-group text-center">
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Connectez vous</button>
+            </div>
+             <div class="text-center mt-4">Pas de compte, <a href="/register">créez en un !</a></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

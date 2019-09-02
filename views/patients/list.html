@@ -1,0 +1,103 @@
+{% set active = "patients" %}
+{% extends "layout.html" %}
+
+{% block topbar %}
+{% endblock %}
+
+{% block content %}
+<div class="row pt-5">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <div class="row align-items-center">
+          <div class="col">
+            <h2 class="mb-0">Patients</h2>
+          </div>
+          <div class="col text-right">
+            <div><a href="/patient/add" class="btn btn-primary">New patient</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="px-2">
+        {% include "alert.html" %}
+      </div>
+      <div class="table-responsive">
+        {% if patients.length > 0 %}
+        
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Patient Id</th>
+              <th scope="col">Address</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Relative No</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Status</th>
+              <th scope="col">DOB</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for patient in patients %}
+            <tr>
+              <th scope="row">{{loop.index}}</th>
+              <td>
+                {{patient.first_name}}
+              </td>
+              <td>
+                {{patient.last_name}}
+              </td>
+              <td>
+                {{patient.patient_id}}
+              </td>
+              <td>
+                {{patient.address}}
+              </td>
+              <td>
+                {{patient.phone}}
+              </td>
+              <td>
+                {{patient.relative_no}}
+              </td>
+              <td>
+                {{patient.gender}}
+              </td>
+              <td>
+                {{patient.status}}
+              </td>
+              <td>
+                {{patient.dob}}
+              </td>
+              <td class="text-right">
+                <div class="dropdown">
+                  <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                    <a class="dropdown-item font-weight-bold" href="/patient/{{doctor._id}}/update">Edit</a>
+                    <form class="dropdown-item" method="post" action="/patient/delete">
+                      <input type="hidden" name="id" value="{{patient._id}}">
+                      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                      <button type="submit" class="btn btn-link text-danger pl-0">
+                        Supprimer
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <div class="text-center text-primary my-3">No category available</div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

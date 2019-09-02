@@ -1,0 +1,52 @@
+{% set active = "doctors" %}
+{% extends "layout.html" %}
+
+{% block topbar %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-9 col-md-6 col-lg-5 mx-auto mt-1">
+    <div class="my-5">
+      <div class="card shadow border-0 bg-secondary">
+        <div class="card-header bg-white">
+          <h2 class="">New doctor</h2>
+        </div>
+        <div class="card-body bg-white">
+        {% include "alert.html" %}
+          <form class="form-signin" action="/doctor/add" method="post">
+            <div class="form-group">
+              <label class="form-control-label">First Name</label>
+              <input type="text" name="first_name" class="form-control form-control-alternative" required autofocus>
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Last Name</label>
+              <input type="text" name="last_name" required class="form-control form-control-alternative">
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Doctor ID</label>
+              <input type="text" name="doctor_id" required class="form-control form-control-alternative">
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Address</label>
+              <input type="text" name="address" required class="form-control form-control-alternative">
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Phone</label>
+              <input type="number" name="phone" required class="form-control form-control-alternative">
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Specialty</label>
+              <input type="text" name="specialty" required class="form-control form-control-alternative">
+            </div>
+            <div class="text-right form-group">
+              <input type="hidden" name="_csrf" value="{{csrfToken}}">
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
